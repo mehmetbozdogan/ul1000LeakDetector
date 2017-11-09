@@ -1,0 +1,5 @@
+file db/inficonUL1000.template {
+    	pattern 
+	{ sys	sec	dev	PORT		}
+        { SYS	SEC	UL1000	SYS-SEC-UL1000  }
+}

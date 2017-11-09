@@ -1,0 +1,247 @@
+# inficonUL1000.proto
+# Proto file for the Inficon UL series
+# Mehmet Bozdogan 04/11/2017
+#
+################################################################################
+Terminator = CR;
+ReadTimeout = 100;
+WriteTimeout = 100;
+PollPeriod = 100;
+ReplyTimeout = 1000;
+LockTimeout = 5000;
+ExtraInput = Ignore;
+
+getStatus
+{
+	out "*stat?";
+	in "%s";
+}
+getId
+{
+	out "*idn:dev?";
+	in "%s";
+}
+getSerial
+{
+	out "*idn:ser?";
+	in "%s";
+}
+getVersion
+{
+	out "*idn:ver?";
+	in "%s";
+}
+autoLeakTestState
+{
+	out "*stat:testl?";
+	in "%s";
+}
+autoLeakTestLog
+{
+	out "*stat:result?";
+	in "%s";
+}
+getErr
+{
+	out "*stat:err?";
+	in "%s";
+}
+getErrHist
+{
+	out "*stat:errh?";
+	in "%40c";
+}
+
+clearErr
+{
+	out "*cls";
+	in "%s";
+}
+
+readLeak
+{
+	out "*read?";
+	in "%f";
+}
+
+run
+{
+	out "*%{sto|sta}";
+	in "OK";
+}
+purge
+{
+	out "*%{purge:off|purge}";
+	in "OK";
+}
+zero
+{
+	out "*%{zero:off|zero}";
+	in "OK";
+}
+vent
+{
+	out "*ven";
+	in "OK";
+}
+calibration
+{
+	out "*cal";
+	in "OK";
+}
+
+measP1
+{
+	out "*meas:p1?";
+	in "%f";
+}
+measP2
+{
+	out "*meas:p2?";
+	in "%f";
+}
+measOff
+{
+	out "*meas:off?";
+	in "%f";
+}
+measImess
+{
+	out "*meas:im?";
+	in "%f";
+}
+measIfilter
+{
+	out "*meas:if?";
+	in "%f";
+}
+measUnv
+{
+	out "*meas:unv?";
+	in "%f";
+}
+measUvv
+{
+	out "*meas:uvv?";
+	in "%f";
+}
+measMiap
+{
+	out "*meas:miap?";
+	in "%f";
+}
+measMikp
+{
+	out "*meas:mikp?";
+	in "%f";
+}
+measMisp
+{
+	out "*meas:misp?";
+	in "%f";
+}
+measMiakp
+{
+	out "*meas:miakp?";
+	in "%f";
+}
+measValve
+{
+	out "*meas:valve?";
+	in "%f";
+}
+measU24Ext
+{
+	out "*meas:u24ext?";
+	in "%f";
+}
+measU24Fb
+{
+	out "*meas:u24fb?";
+	in "%f";
+}
+measU24Fan
+{
+	out "*meas:u24fan?";
+	in "%f";
+}
+measPreamp
+{
+	out "*meas:temp:a?";
+	in "%f";
+}
+measElec
+{
+	out "*meas:temp:e?";
+	in "%f";
+}
+measTfreq
+{
+	out "*meas:turbo:f?";
+	in "%f";
+}
+measTvolt
+{
+	out "*meas:turbo:v?";
+	in "%f";
+}
+measTcurr
+{
+	out "*meas:turbo:c?";
+	in "%f";
+}
+measTpower
+{
+	out "*meas:turbo:power?";
+	in "%f";
+}
+
+setMode
+{
+	out "*conf:mode %{auto|vac|sniff}";
+	@init
+	{
+		out "*conf:mode?";
+		in "%{AUTO|VAC|SNIFF}";
+	}
+}
+setAutoPurge
+{
+	out "*conf:purg %{off|on}";
+}
+setMaxTestTime
+{
+	out "*conf:TESTINGTIME %i";
+	@init
+	{
+		out "*conf:TESTINGTIME?";
+		in "%i";
+	}
+}
+setMinTestTime
+{
+	out "*conf:TESTINGTIMEMIN %i";
+	@init
+	{
+		out "*conf:TESTINGTIMEMIN?";
+		in "%i";
+	}
+}
+setUnitLeak
+{
+	out "*conf:unit:lr %{mbar*l/s|Pa*m3/s|atm*cc/s|Torr*l/s|ppm|g/a|oz/yr}";
+	@init
+	{
+		out "*conf:unit:lr?";
+		in "%{mbar*l/s|Pa*m3/s|atm*cc/s|Torr*l/s|ppm|g/a|oz/yr}";
+	}
+}
+setUnitPressure
+{
+	out "*conf:unit:p %{mbar|Pa|atm|Torr}";
+	@init
+	{
+		out "*conf:unit:p?";
+		in "%{mbar|Pa|atm|Torr}";
+	}
+}

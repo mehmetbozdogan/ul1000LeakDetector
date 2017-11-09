@@ -1,0 +1,7 @@
+include "stream.dbd"    #This line includes the device definitions for StreamDevice and adds the "stream" option to the DTYP fields in any I/O records
+include "asyn.dbd"      #This line and the two followings loads the definitions for ASYN which is used by StreamDevice
+registrar(drvAsynIPPortRegisterCommands)
+registrar(drvAsynSerialPortRegisterCommands)
+#registrar(vxi11RegisterCommands)
+include "dbPv.dbd"
+include "PVAServerRegister.dbd"

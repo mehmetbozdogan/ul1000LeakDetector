@@ -1,0 +1,6 @@
+ASYN=/usr/local/epics/support/asyn
+STREAM=/usr/local/epics/support/streamdevice
+PVASRV = /usr/local/epics/epicsv4/EPICS-CPP-4.6.0/pvaSrv
+PVACCESS = /usr/local/epics/epicsv4/EPICS-CPP-4.6.0/pvAccessCPP
+PVDATA = /usr/local/epics/epicsv4/EPICS-CPP-4.6.0/pvDataCPP
+PVCOMMON = /usr/local/epics/epicsv4/EPICS-CPP-4.6.0/pvCommonCPP

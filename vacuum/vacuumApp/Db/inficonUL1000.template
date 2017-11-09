@@ -1,0 +1,320 @@
+# inficonUL1000.template
+# Template database for the Inficon UL series
+# Mehmet Bozdogan 09/11/2017
+#
+# substitutions:
+# sys    - system
+# sec    - section
+# dev    - device
+# $(sys)-$(sec)-$(dev) - device port
+#
+#
+################################################################################
+record (stringin, "$(sys)-$(sec)-$(dev):STATUS")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto getStatus $(PORT)")
+	field(SCAN, "2 second")
+}
+
+record (stringin, "$(sys)-$(sec)-$(dev):IDN")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto getId $(PORT)")
+	field(PINI, "YES")
+}
+record (stringin, "$(sys)-$(sec)-$(dev):SERIAL")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto getSerial $(PORT)")
+	field(PINI, "YES")
+}
+record (stringin, "$(sys)-$(sec)-$(dev):VERSION")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto getVersion $(PORT)")
+	field(PINI, "YES")
+}
+record (stringin, "$(sys)-$(sec)-$(dev):AUTOLEAKTEST")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto autoLeakTestState $(PORT)")
+	field(PINI, "YES")
+}
+record (stringin, "$(sys)-$(sec)-$(dev):TESTLOG")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto autoLeakTestState $(PORT)")
+	field(PINI, "YES")
+}
+record (stringin, "$(sys)-$(sec)-$(dev):ERR")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto getErr $(PORT)")
+	field(PINI, "YES")
+}
+record (stringin, "$(sys)-$(sec)-$(dev):ERRHIST")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto getErrHist $(PORT)")
+	field(PINI, "YES")
+}
+
+record (bo, "$(sys)-$(sec)-$(dev):CLRERR")
+{
+	field(DTYP, "stream")
+	field(OUT,  "@inficonUL1000.proto clearErr $(PORT)")
+	field(ZNAM, "Clear Error")
+}
+
+record (ai, "$(sys)-$(sec)-$(dev):LEAK")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto readLeak $(PORT)")
+	field(SCAN, "1 second")
+	#field(EGU, "mbar*l/s")
+}
+
+record (bo, "$(sys)-$(sec)-$(dev):RUN")
+{
+	field(DTYP, "stream")
+	field(OUT,  "@inficonUL1000.proto run $(PORT)")
+	field(ZNAM, "Stop")
+	field(ONAM, "Start")
+}
+record (bo, "$(sys)-$(sec)-$(dev):ZERO")
+{
+	field(DTYP, "stream")
+	field(OUT,  "@inficonUL1000.proto zero $(PORT)")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+record (bo, "$(sys)-$(sec)-$(dev):PURGE")
+{
+	field(DTYP, "stream")
+	field(OUT,  "@inficonUL1000.proto purge $(PORT)")
+	field(ZNAM, "Purge Off")
+	field(ONAM, "Purge On")
+}
+
+record (bo, "$(sys)-$(sec)-$(dev):VENT")
+{
+	field(DTYP, "stream")
+	field(OUT,  "@inficonUL1000.proto vent $(PORT)")
+}
+record (bo, "$(sys)-$(sec)-$(dev):CALIBRATION")
+{
+	field(DTYP, "stream")
+	field(OUT,  "@inficonUL1000.proto calibration $(PORT)")
+}
+
+record (ai, "$(sys)-$(sec)-$(dev):P1")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto measP1 $(PORT)")
+	field(SCAN, "5 second")
+	#field(EGU, "mbar*l/s")
+}
+record (ai, "$(sys)-$(sec)-$(dev):P2")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto measP2 $(PORT)")
+	field(SCAN, "5 second")
+	#field(EGU, "mbar*l/s")
+}
+record (ai, "$(sys)-$(sec)-$(dev):OFFSET")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto measOff $(PORT)")
+	field(SCAN, "5 second")
+	field(EGU, "A")
+}
+record (ai, "$(sys)-$(sec)-$(dev):IMESS")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto measImess $(PORT)")
+	field(SCAN, "5 second")
+	field(EGU, "A")
+}
+record (ai, "$(sys)-$(sec)-$(dev):IFILTER")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto measIfilter $(PORT)")
+	field(SCAN, "5 second")
+	field(EGU, "A")
+}
+record (ai, "$(sys)-$(sec)-$(dev):UNV")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto measUnv $(PORT)")
+	field(SCAN, "5 second")
+	field(EGU, "V")
+}
+record (ai, "$(sys)-$(sec)-$(dev):UVV")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto measUvv $(PORT)")
+	field(SCAN, "5 second")
+	field(EGU, "V")
+}
+record (ai, "$(sys)-$(sec)-$(dev):MIAP")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto measMiap $(PORT)")
+	field(SCAN, "5 second")
+	field(EGU, "V")
+}
+record (ai, "$(sys)-$(sec)-$(dev):MIKP")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto measMikp $(PORT)")
+	field(SCAN, "5 second")
+	field(EGU, "V")
+}
+record (ai, "$(sys)-$(sec)-$(dev):MISP")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto measMisp $(PORT)")
+	field(SCAN, "5 second")
+	field(EGU, "V")
+}
+record (ai, "$(sys)-$(sec)-$(dev):MIAKP")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto measMiakp $(PORT)")
+	field(SCAN, "5 second")
+	field(EGU, "V")
+}
+record (ai, "$(sys)-$(sec)-$(dev):VALVE")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto measValve $(PORT)")
+	field(SCAN, "5 second")
+	field(EGU, "V")
+}
+record (ai, "$(sys)-$(sec)-$(dev):U24EXT")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto measU24Ext $(PORT)")
+	field(SCAN, "5 second")
+	field(EGU, "V")
+}
+record (ai, "$(sys)-$(sec)-$(dev):U24FB")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto measU24Fb $(PORT)")
+	field(SCAN, "5 second")
+	field(EGU, "V")
+}
+record (ai, "$(sys)-$(sec)-$(dev):U24FAN")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto measU24Fan $(PORT)")
+	field(SCAN, "5 second")
+	field(EGU, "V")
+}
+record (ai, "$(sys)-$(sec)-$(dev):TEMP:PREAMP")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto measPreamp $(PORT)")
+	field(SCAN, "5 second")
+	field(EGU, "C")
+}
+record (ai, "$(sys)-$(sec)-$(dev):TEMP:ELEC")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto measElec $(PORT)")
+	field(SCAN, "5 second")
+	field(EGU, "C")
+}
+record (ai, "$(sys)-$(sec)-$(dev):TURBO:FREQ")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto measTfreq $(PORT)")
+	field(SCAN, "5 second")
+	field(EGU, "Hz")
+}
+record (ai, "$(sys)-$(sec)-$(dev):TURBO:VOLT")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto measTvolt $(PORT)")
+	field(SCAN, "5 second")
+	field(EGU, "V")
+}
+record (ai, "$(sys)-$(sec)-$(dev):TURBO:CURR")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto measTcurr $(PORT)")
+	field(SCAN, "5 second")
+	field(EGU, "A")
+}
+record (ai, "$(sys)-$(sec)-$(dev):TURBO:POWER")
+{
+	field(DTYP, "stream")
+	field(INP,  "@inficonUL1000.proto measTpower $(PORT)")
+	field(SCAN, "5 second")
+	field(EGU, "W")
+}
+
+record (mbbo, "$(sys)-$(sec)-$(dev):MODE")
+{
+	field(DTYP, "stream")
+	field(OUT,  "@inficonUL1000.proto setMode $(PORT)")
+	field(ZRVL, "Auto")
+	field(ZRST, "Auto")
+	field(ONVL, "Vac")
+	field(ONST, "Vac")
+	field(TWVL, "Sniff")
+	field(TWST, "Sniff")
+}
+record (bo, "$(sys)-$(sec)-$(dev):AUTOPURGE")
+{
+	field(DTYP, "stream")
+	field(OUT,  "@inficonUL1000.proto setAutoPurge $(PORT)")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+}
+record (longout, "$(sys)-$(sec)-$(dev):TESTINGTIME:MAX")
+{
+	field(DTYP, "stream")
+	field(OUT,  "@inficonUL1000.proto setMaxTestTime $(PORT)")
+}
+record (longout, "$(sys)-$(sec)-$(dev):TESTINGTIME:MIN")
+{
+	field(DTYP, "stream")
+	field(OUT,  "@inficonUL1000.proto setMinTestTime $(PORT)")
+}
+record (mbbo, "$(sys)-$(sec)-$(dev):LEAK:UNIT-SP")
+{
+	field(DTYP, "stream")
+	field(OUT,  "@inficonUL1000.proto setUnitLeak $(PORT)")
+	field(ZRVL, "mbar*l/s")
+	field(ZRST, "mbar*l/s")
+	field(ONVL, "Pa*m3/s")
+	field(ONST, "Pa*m3/s")
+	field(TWVL, "atm*cc/s")
+	field(TWST, "atm*cc/s")
+	field(THVL, "Torr*l/s")
+	field(THST, "Torr*l/s")
+	field(FRVL, "ppm")
+	field(FRST, "ppm")
+	field(FVVL, "g/a")
+	field(FVST, "g/a")
+	field(SXVL, "oz/yr")
+	field(SXST, "oz/yr")
+	field(PINI, "YES")
+}
+record (mbbo, "$(sys)-$(sec)-$(dev):PRES:UNIT-SP")
+{
+	field(DTYP, "stream")
+	field(OUT,  "@inficonUL1000.proto setUnitPressure $(PORT)")
+	field(ZRVL, "mbar")
+	field(ZRST, "mbar")
+	field(ONVL, "Pa")
+	field(ONST, "Pa")
+	field(TWVL, "atm")
+	field(TWST, "atm")
+	field(THVL, "Torr")
+	field(THST, "Torr")
+	field(PINI, "YES")
+}
