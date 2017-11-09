@@ -6,7 +6,7 @@
 # sys    - system
 # sec    - section
 # dev    - device
-# $(sys)-$(sec)-$(dev) - device port
+# PORT   - device port
 #
 #
 ################################################################################
