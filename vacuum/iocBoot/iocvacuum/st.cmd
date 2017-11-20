@@ -17,7 +17,7 @@ dbLoadTemplate "db/vacuum.substitutions"
 
 drvAsynSerialPortConfigure("SYS-SEC-UL1000","/dev/ttyS0")
 #asynSetTraceMask("SYS-SEC-UL1000",-1,0x9)
-#asynSetTraceIOMask("SYSBL-SEC-UL1000",-1,0x2)
+#asynSetTraceIOMask("SYS-SEC-UL1000",-1,0x2)
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
