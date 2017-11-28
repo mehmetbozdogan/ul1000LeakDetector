@@ -6,7 +6,7 @@
 # sys    - system
 # sec    - section
 # dev    - device
-# PORT   - device port
+# $(sys)-$(sec)-$(dev) - device port
 #
 #
 ################################################################################
@@ -260,11 +260,11 @@ record (mbbo, "$(sys)-$(sec)-$(dev):MODE")
 {
 	field(DTYP, "stream")
 	field(OUT,  "@inficonUL1000.proto setMode $(PORT)")
-	field(ZRVL, "Auto")
+	field(ZRVL, "0")
 	field(ZRST, "Auto")
-	field(ONVL, "Vac")
+	field(ONVL, "1")
 	field(ONST, "Vac")
-	field(TWVL, "Sniff")
+	field(TWVL, "2")
 	field(TWST, "Sniff")
 }
 record (bo, "$(sys)-$(sec)-$(dev):AUTOPURGE")
@@ -288,19 +288,19 @@ record (mbbo, "$(sys)-$(sec)-$(dev):LEAK:UNIT-SP")
 {
 	field(DTYP, "stream")
 	field(OUT,  "@inficonUL1000.proto setUnitLeak $(PORT)")
-	field(ZRVL, "mbar*l/s")
+	field(ZRVL, "0")
 	field(ZRST, "mbar*l/s")
-	field(ONVL, "Pa*m3/s")
+	field(ONVL, "1")
 	field(ONST, "Pa*m3/s")
-	field(TWVL, "atm*cc/s")
+	field(TWVL, "2")
 	field(TWST, "atm*cc/s")
-	field(THVL, "Torr*l/s")
+	field(THVL, "3")
 	field(THST, "Torr*l/s")
-	field(FRVL, "ppm")
+	field(FRVL, "4")
 	field(FRST, "ppm")
-	field(FVVL, "g/a")
+	field(FVVL, "5")
 	field(FVST, "g/a")
-	field(SXVL, "oz/yr")
+	field(SXVL, "6")
 	field(SXST, "oz/yr")
 	field(PINI, "YES")
 }
@@ -308,13 +308,13 @@ record (mbbo, "$(sys)-$(sec)-$(dev):PRES:UNIT-SP")
 {
 	field(DTYP, "stream")
 	field(OUT,  "@inficonUL1000.proto setUnitPressure $(PORT)")
-	field(ZRVL, "mbar")
+	field(ZRVL, "0")
 	field(ZRST, "mbar")
-	field(ONVL, "Pa")
+	field(ONVL, "1")
 	field(ONST, "Pa")
-	field(TWVL, "atm")
+	field(TWVL, "2")
 	field(TWST, "atm")
-	field(THVL, "Torr")
+	field(THVL, "3")
 	field(THST, "Torr")
 	field(PINI, "YES")
 }
